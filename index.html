@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vast.ai 租金監控</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="hero">
+        <h1>Vast.ai 即時監控</h1>
+        <p>追蹤租金與租用率，並在租金大幅波動時自動透過 Telegram 通知。</p>
+      </header>
+
+      <section class="card">
+        <h2>資料來源</h2>
+        <div class="grid two">
+          <label>
+            Grafana Base URL
+            <input id="baseUrl" type="url" value="https://500.farm/vastai" />
+          </label>
+          <label>
+            Dashboard UID
+            <input id="dashboardUid" type="text" value="dc6f21ba-250f-47f2-b514-5ff8d17967a9" />
+          </label>
+        </div>
+        <div class="actions">
+          <button id="loadDashboardBtn" type="button">載入來源設定與 GPU 清單</button>
+          <span id="sourceStatus" class="status">尚未載入</span>
+        </div>
+        <p class="hint">GPU 型號只會從來源 dashboard 的 <code>gpu_name</code> 變數載入，不能手動新增。</p>
+      </section>
+
+      <section class="card">
+        <h2>監控條件</h2>
+        <div class="grid two">
+          <label>
+            GPU 搜尋（僅篩選顯示，不會新增型號）
+            <input id="gpuSearch" type="search" placeholder="例如 RTX 5090" />
+          </label>
+          <label>
+            重新整理秒數
+            <input id="refreshSeconds" type="number" value="60" min="15" step="5" />
+          </label>
+          <label>
+            租金變動通知門檻（%）
+            <input id="priceThreshold" type="number" value="5" min="0.1" step="0.1" />
+          </label>
+          <label>
+            只顯示驗證節點
+            <select id="verifiedOnly">
+              <option value="yes" selected>是</option>
+              <option value="no">否</option>
+            </select>
+          </label>
+          <label>
+            Fee Multiplier
+            <input id="feeMultiplier" type="number" value="0.75" min="0" step="0.05" />
+          </label>
+        </div>
+
+        <div class="gpu-toolbar">
+          <strong>可選 GPU：</strong>
+          <div class="actions">
+            <button id="selectAllBtn" type="button" class="ghost">全選目前篩選結果</button>
+            <button id="clearSelectionBtn" type="button" class="ghost">清除選取</button>
+            <span id="gpuSelectionInfo" class="status">已選 0 個</span>
+          </div>
+        </div>
+        <div id="gpuList" class="gpu-list" aria-live="polite"></div>
+      </section>
+
+      <section class="card">
+        <h2>Telegram 通知</h2>
+        <div class="grid two">
+          <label>
+            Bot Token
+            <input id="botToken" type="password" placeholder="123456:ABCDEF..." />
+          </label>
+          <label>
+            Chat ID
+            <input id="chatId" type="text" placeholder="123456789" />
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>即時數據</h2>
+        <div class="actions">
+          <button id="startBtn" type="button">開始監控</button>
+          <button id="stopBtn" type="button" disabled>停止監控</button>
+          <span id="monitorStatus" class="status">尚未開始</span>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>GPU 型號</th>
+                <th>租金</th>
+                <th>租用率</th>
+                <th>租金變化(%)</th>
+                <th>更新時間</th>
+              </tr>
+            </thead>
+            <tbody id="statsBody">
+              <tr><td class="empty" colspan="5">尚無資料</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

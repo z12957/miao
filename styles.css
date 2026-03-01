@@ -1,0 +1,134 @@
+:root {
+  font-family: Inter, "Noto Sans TC", "Segoe UI", sans-serif;
+  color: #1a2440;
+  background: #f1f4fb;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 28px 16px 40px;
+  display: grid;
+  gap: 16px;
+}
+
+.hero h1 { margin: 0 0 6px; }
+.hero p { margin: 0; color: #586483; }
+
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 8px 24px rgba(34, 52, 106, 0.09);
+}
+
+h2 { margin: 0 0 14px; font-size: 1.15rem; }
+
+.grid {
+  display: grid;
+  gap: 12px;
+}
+.grid.two { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.95rem;
+}
+
+input, select, button {
+  padding: 10px 12px;
+  border-radius: 9px;
+  border: 1px solid #ccd3e5;
+  font-size: 0.95rem;
+}
+
+button {
+  border: none;
+  background: #2f4be3;
+  color: #fff;
+  cursor: pointer;
+}
+button.ghost {
+  background: #eef2ff;
+  color: #304194;
+}
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #eef1f8;
+  color: #4a5678;
+  font-size: 0.85rem;
+}
+.status[data-type="success"] { background: #e4f6e9; color: #1f7a46; }
+.status[data-type="error"] { background: #fde8ea; color: #b32318; }
+
+.hint {
+  margin: 10px 0 0;
+  color: #667399;
+  font-size: 0.9rem;
+}
+
+.gpu-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.gpu-list {
+  margin-top: 8px;
+  border: 1px solid #dee4f3;
+  border-radius: 10px;
+  padding: 10px;
+  min-height: 90px;
+  max-height: 260px;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 8px;
+}
+
+.gpu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #e2e7f5;
+  border-radius: 8px;
+  padding: 8px;
+  background: #fafbff;
+}
+
+.empty-gpu {
+  color: #7d88a7;
+  padding: 6px;
+}
+
+.table-wrap { margin-top: 10px; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #e6ebf8;
+}
+th { background: #f8faff; }
+
+.empty { text-align: center; color: #7c88a7; }
+.up { color: #0d8b41; font-weight: 600; }
+.down { color: #c83232; font-weight: 600; }
+.neutral { color: #667399; }
