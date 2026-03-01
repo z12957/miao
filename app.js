@@ -23,6 +23,8 @@ const els = {
 const state = {
   dashboard: null,
   timer: null,
+  monitorRunning: false,
+  refreshInFlight: false,
   gpuOptions: [],
   selectedGpus: new Set(),
   panelPrice: null,
@@ -257,9 +259,15 @@ function fmt(val, d = 4) {
 }
 
 async function refreshData() {
+  if (state.refreshInFlight) {
+    return;
+  }
+  state.refreshInFlight = true;
+
   if (!state.selectedGpus.size) {
     setStatus(els.monitorStatus, "請先選擇至少一個 GPU", "error");
     renderRows([]);
+    state.refreshInFlight = false;
     return;
   }
 
@@ -310,24 +318,39 @@ async function refreshData() {
     setStatus(els.monitorStatus, `更新完成（${rows.length} 筆）`, "success");
   } catch (error) {
     setStatus(els.monitorStatus, error.message, "error");
+  } finally {
+    state.refreshInFlight = false;
   }
 }
 
+function scheduleNextRefresh(seconds) {
+  if (!state.monitorRunning) {
+    return;
+  }
+
+  state.timer = window.setTimeout(async () => {
+    await refreshData();
+    scheduleNextRefresh(seconds);
+  }, seconds * 1000);
+}
+
 function startMonitor() {
-  if (state.timer) {
+  if (state.monitorRunning) {
     return;
   }
   const seconds = Math.max(15, Number(els.refreshSeconds.value) || 60);
+  state.monitorRunning = true;
   refreshData();
-  state.timer = window.setInterval(refreshData, seconds * 1000);
+  scheduleNextRefresh(seconds);
   els.startBtn.disabled = true;
   els.stopBtn.disabled = false;
   setStatus(els.monitorStatus, `監控中（每 ${seconds} 秒）`, "success");
 }
 
 function stopMonitor() {
+  state.monitorRunning = false;
   if (state.timer) {
-    clearInterval(state.timer);
+    clearTimeout(state.timer);
     state.timer = null;
   }
   els.startBtn.disabled = false;
