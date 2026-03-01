@@ -227,3 +227,18 @@ h2 {
     width: 52px;
   }
 }
+
+.company-info {
+  margin-top: 0.25rem;
+  color: #d8e1ed;
+}
+
+.company-info a {
+  color: var(--gold);
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.company-info a:hover {
+  text-decoration: underline;
+}
