@@ -70,15 +70,15 @@ p {
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3.3rem);
-  line-height: 1.2;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.25;
   margin-top: 0.4rem;
 }
 
 .lead {
   margin-top: 1rem;
   color: var(--muted);
-  max-width: 58ch;
+  max-width: 64ch;
 }
 
 .hero-actions {
@@ -125,7 +125,7 @@ h2 {
 }
 
 .grid.two {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .grid.three {
@@ -139,9 +139,15 @@ h2 {
   padding: 1.2rem;
 }
 
+.card h3 + p,
+.card h3 + ul,
+.card h3 + table {
+  margin-top: 0.6rem;
+}
+
 .card ul {
   padding-left: 1.2rem;
-  margin: 0.8rem 0 0;
+  margin: 0.6rem 0 0;
 }
 
 .card li + li {
@@ -153,46 +159,58 @@ h2 {
   font-size: 0.92rem;
 }
 
-.huge {
-  font-size: clamp(2.3rem, 8vw, 4.6rem);
+.flow {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  align-items: center;
+  gap: 0.7rem;
+  overflow-x: auto;
+  padding-bottom: 0.2rem;
+}
+
+.flow-item {
+  min-width: 180px;
+  border: 1px solid rgba(245, 201, 107, 0.35);
+  border-radius: 0.8rem;
+  padding: 0.9rem;
+  text-align: center;
+  background: rgba(7, 31, 58, 0.9);
+  font-weight: 600;
+}
+
+.flow-arrow {
   color: var(--gold);
-  font-weight: 900;
-  line-height: 1.05;
-  margin: 0.2rem 0 0.4rem;
+  font-size: 1.4rem;
+  font-weight: 700;
 }
 
-.bars {
-  display: flex;
-  align-items: end;
-  gap: 1.3rem;
-  margin-top: 0.9rem;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.8rem;
+  font-size: 0.95rem;
 }
 
-.bar {
-  display: block;
-  width: 72px;
-  border-radius: 0.4rem 0.4rem 0.1rem 0.1rem;
-  background: linear-gradient(180deg, #ffdb8a, #f2bc51);
+th,
+td {
+  border: 1px solid rgba(210, 222, 238, 0.22);
+  padding: 0.48rem;
+  text-align: left;
 }
 
-.bar.small {
-  height: 45px;
+th {
+  background: rgba(245, 201, 107, 0.14);
 }
 
-.bar.large {
-  height: 160px;
+.note-inline {
+  margin-top: 0.8rem;
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
-.stat {
-  font-size: 2.4rem;
-  font-weight: 900;
+.formula {
+  font-weight: 700;
   color: var(--gold);
-}
-
-.ratio span {
-  color: var(--gold);
-  font-size: 1.8rem;
-  font-weight: 800;
 }
 
 .contact-box {
@@ -218,16 +236,6 @@ h2 {
   font-size: 0.9rem;
 }
 
-@media (max-width: 640px) {
-  .hero-content {
-    padding-top: 2rem;
-  }
-
-  .bar {
-    width: 52px;
-  }
-}
-
 .company-info {
   margin-top: 0.25rem;
   color: #d8e1ed;
@@ -241,4 +249,19 @@ h2 {
 
 .company-info a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+  .hero-content {
+    padding-top: 2rem;
+  }
+
+  .flow {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-arrow {
+    transform: rotate(90deg);
+    justify-self: center;
+  }
 }
