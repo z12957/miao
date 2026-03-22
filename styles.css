@@ -57,6 +57,18 @@ a {
   font-weight: 900;
   letter-spacing: 0.04em;
   color: #12366f;
+ codex/add-gpu-investment-proposal-details-dykxzx
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.brand-en {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #4f6b97;
+  letter-spacing: 0.02em;
 }
 
 .nav-links {
@@ -74,6 +86,25 @@ a {
   color: var(--primary);
 }
 
+
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+ codex/create-official-website-for-feihuang-asset-management
 .section {
   padding: 4rem 0;
 }
@@ -273,6 +304,7 @@ th {
   border: 1px dashed #adc7f3;
   border-radius: 10px;
   padding: 0.75rem;
+ codex/add-gpu-investment-proposal-details-dykxzx
 }
 
 .card ul {
@@ -280,6 +312,15 @@ th {
   margin-top: 0.5rem;
 }
 
+=======
+}
+
+.card ul {
+  padding-left: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+ codex/create-official-website-for-feihuang-asset-management
 .callout {
   background: #fff;
   border: 1px solid var(--line);
@@ -338,4 +379,13 @@ th {
   .nav-links {
     display: none;
   }
+ codex/add-gpu-investment-proposal-details-dykxzx
+
+  .brand-en {
+    display: block;
+    font-size: 0.7rem;
+    width: 100%;
+  }
+
+ codex/create-official-website-for-feihuang-asset-management
 }
